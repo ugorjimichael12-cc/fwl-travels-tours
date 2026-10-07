@@ -133,14 +133,16 @@ export default function PlanTripForm({ user }: PlanTripFormProps) {
       setAccommodation("Hotel");
       setServices([]);
       setAdditionalRequests("");
-    } catch (error) {
-      console.error("FWL travel request error:", error);
+    } catch (error: any) {
+  console.error("FWL travel request error:", error);
 
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "We could not submit your travel request. Please try again."
-      );
+  setErrorMessage(
+    error?.message ||
+      error?.details ||
+      error?.hint ||
+      "We could not submit your travel request. Please try again."
+  );
+}
     } finally {
       setLoading(false);
     }

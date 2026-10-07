@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import type { User } from "@supabase/supabase-js";
+import PlanTripForm from "./PlanTripForm";
 
 type Destination = {
   name: string;
@@ -1356,78 +1357,7 @@ function App() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <form
-                onSubmit={submitContact}
-                className="bg-white p-6 text-midnight md:p-8"
-              >
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <label>
-                    <span className="mb-2 block text-[9px] font-extrabold tracking-[.18em] text-slate-400">
-                      NAME
-                    </span>
-
-                    <input
-                      required
-                      className="w-full border border-slate-200 px-4 py-3 text-sm outline-none focus:border-ocean"
-                      placeholder="Your name"
-                    />
-                  </label>
-
-                  <label>
-                    <span className="mb-2 block text-[9px] font-extrabold tracking-[.18em] text-slate-400">
-                      EMAIL
-                    </span>
-
-                    <input
-                      required
-                      type="email"
-                      className="w-full border border-slate-200 px-4 py-3 text-sm outline-none focus:border-ocean"
-                      placeholder="you@example.com"
-                    />
-                  </label>
-                </div>
-
-                <label className="mt-5 block">
-                  <span className="mb-2 block text-[9px] font-extrabold tracking-[.18em] text-slate-400">
-                    WHERE ARE YOU GOING?
-                  </span>
-
-                  <input
-                    required
-                    className="w-full border border-slate-200 px-4 py-3 text-sm outline-none focus:border-ocean"
-                    placeholder="Destination"
-                  />
-                </label>
-
-                <label className="mt-5 block">
-                  <span className="mb-2 block text-[9px] font-extrabold tracking-[.18em] text-slate-400">
-                    TELL US ABOUT YOUR JOURNEY
-                  </span>
-
-                  <textarea
-                    required
-                    rows={5}
-                    className="w-full resize-none border border-slate-200 px-4 py-3 text-sm outline-none focus:border-ocean"
-                    placeholder="Dates, number of travellers, what you need..."
-                  />
-                </label>
-
-                {contactSent && (
-                  <div className="mt-5 flex items-start gap-3 border border-emerald-200 bg-emerald-50 p-4 text-xs leading-5 text-emerald-800">
-                    <Check size={16} className="mt-0.5 shrink-0" />
-                    Your travel request has been received. We&apos;ll connect
-                    this form to FWL&apos;s enquiry system next.
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  className="mt-5 flex w-full items-center justify-center gap-3 bg-midnight px-6 py-4 text-[10px] font-extrabold tracking-[.17em] text-white transition hover:bg-ocean"
-                >
-                  SEND TRAVEL REQUEST
-                  <Send size={15} />
-                </button>
-              </form>
+              <PlanTripForm user={user} />
             </Reveal>
           </div>
         </section>

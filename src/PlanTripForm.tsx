@@ -10,6 +10,7 @@ type PlanTripFormProps = {
 
 const createRequestReference = () => {
   const date = new Date();
+
   const datePart = [
     date.getFullYear(),
     String(date.getMonth() + 1).padStart(2, "0"),
@@ -28,9 +29,7 @@ const labelClass =
   "mb-2 block text-[9px] font-extrabold tracking-[.18em] text-slate-400";
 
 export default function PlanTripForm({ user }: PlanTripFormProps) {
-  const [name, setName] = useState(
-    user?.user_metadata?.full_name ?? ""
-  );
+  const [name, setName] = useState(user?.user_metadata?.full_name ?? "");
   const [email, setEmail] = useState(user?.email ?? "");
   const [phone, setPhone] = useState("");
   const [origin, setOrigin] = useState("Lagos");
@@ -74,7 +73,10 @@ export default function PlanTripForm({ user }: PlanTripFormProps) {
 
     const numericBudget = budget ? Number(budget) : null;
 
-    if (numericBudget !== null && (!Number.isFinite(numericBudget) || numericBudget < 0)) {
+    if (
+      numericBudget !== null &&
+      (!Number.isFinite(numericBudget) || numericBudget < 0)
+    ) {
       setErrorMessage("Please enter a valid budget.");
       return;
     }
@@ -134,15 +136,15 @@ export default function PlanTripForm({ user }: PlanTripFormProps) {
       setServices([]);
       setAdditionalRequests("");
     } catch (error: any) {
-  console.error("FWL travel request error:", error);
+      console.error("FWL travel request error:", error);
 
-  setErrorMessage(
-    error?.message ||
-      error?.details ||
-      error?.hint ||
-      "We could not submit your travel request. Please try again."
-  );
-}
+      const message =
+        error?.message ||
+        error?.details ||
+        error?.hint ||
+        "We could not submit your travel request. Please try again.";
+
+      setErrorMessage(message);
     } finally {
       setLoading(false);
     }

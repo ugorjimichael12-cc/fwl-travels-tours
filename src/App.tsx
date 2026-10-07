@@ -828,12 +828,12 @@ function App() {
           </div>
 
           <div className="mx-auto mt-16 grid max-w-[1200px] border-t border-midnight/10 sm:grid-cols-2 lg:grid-cols-4">
-            {[
+            {([
               [Ticket, "Flight Bookings"],
               [Compass, "Tour Experiences"],
               [Navigation, "Travel Planning"],
               [Sparkles, "Destination Discovery"],
-            ].map(([Icon, label], index) => {
+            ] as [LucideIcon, string][]).map(([Icon, label], index) => {
               const IconComponent = Icon;
 
               return (

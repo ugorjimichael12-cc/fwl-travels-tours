@@ -30,6 +30,7 @@ import {
   Ticket,
   Users,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import type { User } from "@supabase/supabase-js";
@@ -1077,7 +1078,8 @@ function App() {
                   "Travel with the confidence that your journey has been carefully considered.",
                   Plane,
                 ],
-              ].map(([number, title, description, Icon], index) => {
+              ] as [string, string, string, LucideIcon][]).map(
+                ([number, title, description, Icon], index) => {
                 const JourneyIcon = Icon;
 
                 return (

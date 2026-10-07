@@ -32,6 +32,7 @@ import {
   X,
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
+import type { User } from "@supabase/supabase-js";
 
 type Destination = {
   name: string;
@@ -426,7 +427,7 @@ function App() {
   const [testimonial, setTestimonial] = useState(0);
   const [contactSent, setContactSent] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const { scrollY } = useScroll();
 

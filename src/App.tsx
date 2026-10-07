@@ -828,34 +828,30 @@ function App() {
           </div>
 
           <div className="mx-auto mt-16 grid max-w-[1200px] border-t border-midnight/10 sm:grid-cols-2 lg:grid-cols-4">
-            {([
-              [Ticket, "Flight Bookings"],
-              [Compass, "Tour Experiences"],
-              [Navigation, "Travel Planning"],
-              [Sparkles, "Destination Discovery"],
-            ] as [LucideIcon, string][]).map(([Icon, label], index) => {
-              const IconComponent = Icon;
+            {[
+              { icon: Ticket, label: "Flight Bookings" },
+              { icon: Compass, label: "Tour Experiences" },
+              { icon: Navigation, label: "Travel Planning" },
+              { icon: Sparkles, label: "Destination Discovery" },
+            ].map(({ icon: IconComponent, label }, index) => (
+              <Reveal key={label} delay={index * 0.06}>
+                <div className="group border-b border-midnight/10 p-7 transition hover:bg-white sm:border-r lg:min-h-48">
+                  <IconComponent
+                    className="mb-12 text-ocean transition group-hover:-translate-y-1 group-hover:text-champagne"
+                    size={28}
+                  />
 
-              return (
-                <Reveal key={label} delay={index * 0.06}>
-                  <div className="group border-b border-midnight/10 p-7 transition hover:bg-white sm:border-r lg:min-h-48">
-                    <IconComponent
-                      className="mb-12 text-ocean transition group-hover:-translate-y-1 group-hover:text-champagne"
-                      size={28}
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-sm font-extrabold">{label}</span>
+
+                    <ArrowDownRight
+                      size={17}
+                      className="text-slate-400 transition group-hover:translate-x-1 group-hover:translate-y-1"
                     />
-
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-sm font-extrabold">{label}</span>
-
-                      <ArrowDownRight
-                        size={17}
-                        className="text-slate-400 transition group-hover:translate-x-1 group-hover:translate-y-1"
-                      />
-                    </div>
                   </div>
-                </Reveal>
-              );
-            })}
+                </div>
+              </Reveal>
+            ))}
           </div>
         </section>
 
@@ -1054,56 +1050,55 @@ function App() {
 
             <div className="mt-16 grid border-t border-midnight/10 md:grid-cols-4">
               {[
-                [
-                  "01",
-                  "DISCOVER",
-                  "Tell us where you want to go or let FWL help you discover what comes next.",
-                  Compass,
-                ],
-                [
-                  "02",
-                  "PLAN",
-                  "Shape your journey around your dates, preferences, travellers and priorities.",
-                  Navigation,
-                ],
-                [
-                  "03",
-                  "BOOK",
-                  "Choose the travel option or experience that works for you.",
-                  Ticket,
-                ],
-                [
-                  "04",
-                  "GO",
-                  "Travel with the confidence that your journey has been carefully considered.",
-                  Plane,
-                ],
-              ] as [string, string, string, LucideIcon][]).map(
-                ([number, title, description, Icon], index) => {
-                const JourneyIcon = Icon;
+                {
+                  number: "01",
+                  title: "DISCOVER",
+                  description:
+                    "Tell us where you want to go or let FWL help you discover what comes next.",
+                  icon: Compass,
+                },
+                {
+                  number: "02",
+                  title: "PLAN",
+                  description:
+                    "Shape your journey around your dates, preferences, travellers and priorities.",
+                  icon: Navigation,
+                },
+                {
+                  number: "03",
+                  title: "BOOK",
+                  description:
+                    "Choose the travel option or experience that works for you.",
+                  icon: Ticket,
+                },
+                {
+                  number: "04",
+                  title: "GO",
+                  description:
+                    "Travel with the confidence that your journey has been carefully considered.",
+                  icon: Plane,
+                },
+              ].map(({ number, title, description, icon: JourneyIcon }, index) => (
+                <Reveal key={number} delay={index * 0.06}>
+                  <article className="border-b border-midnight/10 p-7 md:border-r md:py-10">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-extrabold tracking-[.2em] text-ocean">
+                        {number}
+                      </span>
 
-                return (
-                  <Reveal key={number} delay={index * 0.06}>
-                    <article className="border-b border-midnight/10 p-7 md:border-r md:py-10">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-extrabold tracking-[.2em] text-ocean">
-                          {number}
-                        </span>
+                      <JourneyIcon size={22} className="text-ocean" />
+                    </div>
 
-                        <JourneyIcon size={22} className="text-ocean" />
-                      </div>
+                    <h3 className="mt-16 text-lg font-extrabold">
+                      {title}
+                    </h3>
 
-                      <h3 className="mt-16 text-lg font-extrabold">
-                        {title}
-                      </h3>
-
-                      <p className="mt-4 text-sm leading-6 text-slate-500">
-                        {description}
-                      </p>
-                    </article>
-                  </Reveal>
-                );
-              })}
+                    <p className="mt-4 text-sm leading-6 text-slate-500">
+                      {description}
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>

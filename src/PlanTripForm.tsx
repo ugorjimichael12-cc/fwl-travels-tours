@@ -102,7 +102,7 @@ export default function PlanTripForm({ user }: PlanTripFormProps) {
 
       const { error } = await supabase.from("travel_requests").insert({
         request_reference: requestReference,
-        request_type: tripType,
+        request_type: "custom_trip",
         origin: origin.trim() || "Lagos",
         destination: destination.trim(),
         departure_date: departureDate || null,
